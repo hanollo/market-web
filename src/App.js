@@ -1,8 +1,8 @@
 import './App.css';
-import MainPageComponent from "./main"
+import MainPage from "./main"
 
 function App() {
-  return <MainPageComponent />;
+  return <MainPage />;
 }
 
 export default App;
