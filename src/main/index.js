@@ -5,14 +5,19 @@ import axios from "axios";
 function MainPage()
 {
     const [products, setProducts] = React.useState([]);
-    axios.get("https://71e616d0-915f-4bda-aaa6-9ba62f3473c2.mock.pstmn.io/products")
-        .then(function(result){
-            const products = result.data.product;
+    React.useEffect(
+        function() {
+            axios.get("https://71e616d0-915f-4bda-aaa6-9ba62f3473c2.mock.pstmn.io/products")
+                .then(function (result) {
+                    const products = result.data.products;
+                    setProducts(products);
 
-            //console.log(result);
-        }).catch(function(error){
-            console.error('에러 발생 : ', error);
-    });
+                    //console.log(result);
+                }).catch(function (error) {
+                console.error('에러 발생 : ', error);
+            });
+        },[]);
+
     return (
         <div>
             <div id="header">
@@ -31,7 +36,7 @@ function MainPage()
                             return (
                                 <div className="campaign-card">
                                     <div>
-                                        <img className="campaign-img" src="images/products/kisco.png"/>
+                                        <img className="campaign-img" src={product.imageUrl}/>
                                     </div>
                                 </div>
                             )
